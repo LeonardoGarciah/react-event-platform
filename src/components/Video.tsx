@@ -1,12 +1,14 @@
 import { DefaultUi, Player, Youtube } from "@vime/react";
 import { CaretRight, DiscordLogo, FileArrowDown, Lightning } from "phosphor-react";
+import classNames from "classnames";
 
 import '@vime/core/themes/default.css'
 import { gql, useQuery } from "@apollo/client";
 import { useGetLessonBySlugQuery } from "../graphQL/generated";
 
 interface VideoProps{
-  lessonSlug:string
+  lessonSlug:string,
+  showSidebar: boolean
 }
 
 export default function Video(props: VideoProps){
@@ -28,7 +30,9 @@ export default function Video(props: VideoProps){
   console.log(data);
 
   return(
-    <div className="flex-1">
+    <div className={classNames("flex-1",{
+      "sm:hidden": props.showSidebar
+    })}>
       <div className="bg-black flex justify-center">
         <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
           <Player>
@@ -38,7 +42,7 @@ export default function Video(props: VideoProps){
         </div>
       </div>
       <div className="p-8 max-w-[1100px] mx-auto">
-          <div className="flex items-start gap-16">
+          <div className="flex items-start gap-16 flex-wrap">
             <div className="flex-1">
               <h1 className="text-2xl font-bold">{data.lesson.title}</h1>
               <p className="mt-4 text-gray-200 leading-relaxed">
@@ -57,7 +61,7 @@ export default function Video(props: VideoProps){
               </div>
               )}
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 sm:w-11/12">
               <a href="#" className="p-4 text-sm bg-green-500 flex items-center rounded font-bold uppercase gap-2 justify-center hover:bg-green-700 transition-colors">
                 <DiscordLogo size={24}/>
                   Comunidade do Discord
@@ -68,8 +72,8 @@ export default function Video(props: VideoProps){
               </a>
             </div>
           </div>
-          <div className="gap-8 mt-20 grid grid-cols-2">
-            <a href="" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors">
+          <div className="gap-8 mt-20 grid grid-cols-2 sm:grid-cols-1">
+            <a className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-gray-600 transition-colors">
               <div className="bg-green-700 h-full p-6 flex items-center">
                 <FileArrowDown size={40}/>
               </div>
