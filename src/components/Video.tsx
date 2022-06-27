@@ -11,6 +11,7 @@ interface VideoProps{
 
 export default function Video(props: VideoProps){
   const {data} = useGetLessonBySlugQuery({
+    fetchPolicy: "no-cache" ,
     variables:{
       slug: props.lessonSlug
     }
@@ -31,7 +32,7 @@ export default function Video(props: VideoProps){
       <div className="bg-black flex justify-center">
         <div className="h-full w-full max-w-[1100px] max-h-[60vh] aspect-video">
           <Player>
-              <Youtube videoId={data.lesson.videoId}/>
+              <Youtube cookies={true}  videoId={data.lesson.videoId}/>
               <DefaultUi/>
           </Player>
         </div>
