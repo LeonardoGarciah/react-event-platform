@@ -6,8 +6,9 @@ import Video from "../components/Video";
 
 export default function Event(){
   const { slug } = useParams<{slug:string}>();
-  const [showSidebar,setShowSideBar] = useState(false);
+  const [showSidebar,setShowSideBar] = useState(true);
 
+  
   function openAndCloseSideBar(){
     setShowSideBar(!showSidebar);
   }
