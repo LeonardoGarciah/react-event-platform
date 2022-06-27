@@ -1,0 +1,7 @@
+{
+  "rewrites":  [
+    {"source": "/(.*)", "destination": "/"},
+    {"source": "/event", "destination": "/event"},
+    {"source": "/event/lesson/:slug", "destination": "/event/lesson/:slug"}
+  ]
+}
