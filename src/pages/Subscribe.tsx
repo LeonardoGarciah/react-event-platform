@@ -56,7 +56,7 @@ export default function Subscribe(){
       navigate('/event')
 
     }).catch((error)=>{
-      console.log(error)
+      console.log(JSON.stringify(error, null, 2))
     })
 
      })

@@ -3,7 +3,6 @@ import { CaretRight, DiscordLogo, FileArrowDown, Lightning } from "phosphor-reac
 import classNames from "classnames";
 
 import '@vime/core/themes/default.css'
-import { gql, useQuery } from "@apollo/client";
 import { useGetLessonBySlugQuery } from "../graphQL/generated";
 
 interface VideoProps{
