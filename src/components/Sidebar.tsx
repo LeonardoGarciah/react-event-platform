@@ -1,9 +1,16 @@
-import { gql, useQuery } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import { useGetLessonsQuery } from "../graphQL/generated";
 import Lesson from "./Lesson";
 
 export default function Sidebar(){
   const { data } = useGetLessonsQuery()
+
+  const navigate = useNavigate();
+
+  console.log(localStorage.getItem("logged"))
+  if(!localStorage.getItem("logged")){
+    navigate("/")
+  }
 
   console.log(data);
   return(

@@ -4165,6 +4165,7 @@ export type Subscriber = Node & {
   scheduledIn: Array<ScheduledOperation>;
   /** System stage field */
   stage: Stage;
+  token?: Maybe<Scalars['String']>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
@@ -4232,6 +4233,7 @@ export type SubscriberCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   email: Scalars['String'];
   name: Scalars['String'];
+  token?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
@@ -4360,6 +4362,25 @@ export type SubscriberManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  token?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  token_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  token_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  token_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  token_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  token_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  token_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  token_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  token_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  token_starts_with?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -4389,6 +4410,8 @@ export enum SubscriberOrderByInput {
   NameDesc = 'name_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
+  TokenAsc = 'token_ASC',
+  TokenDesc = 'token_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
 }
@@ -4396,6 +4419,7 @@ export enum SubscriberOrderByInput {
 export type SubscriberUpdateInput = {
   email?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']>;
 };
 
 export type SubscriberUpdateManyInlineInput = {
@@ -4417,6 +4441,7 @@ export type SubscriberUpdateManyInlineInput = {
 
 export type SubscriberUpdateManyInput = {
   name?: InputMaybe<Scalars['String']>;
+  token?: InputMaybe<Scalars['String']>;
 };
 
 export type SubscriberUpdateManyWithNestedWhereInput = {
@@ -4564,6 +4589,25 @@ export type SubscriberWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  token?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  token_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  token_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  token_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  token_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  token_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  token_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  token_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  token_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  token_starts_with?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -5568,6 +5612,15 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type CreateSubscriberWithGithubMutationVariables = Exact<{
+  name: Scalars['String'];
+  email: Scalars['String'];
+  token: Scalars['String'];
+}>;
+
+
+export type CreateSubscriberWithGithubMutation = { __typename?: 'Mutation', createSubscriber?: { __typename?: 'Subscriber', id: string } | null };
+
 export type CreateSubscriberMutationVariables = Exact<{
   name: Scalars['String'];
   email: Scalars['String'];
@@ -5589,6 +5642,41 @@ export type GetLessonsQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetLessonsQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', id: string, slug: string, title: string, lessonType: LessonType, availableAt?: any | null }> };
 
 
+export const CreateSubscriberWithGithubDocument = gql`
+    mutation CreateSubscriberWithGithub($name: String!, $email: String!, $token: String!) {
+  createSubscriber(data: {name: $name, email: $email, token: $token}) {
+    id
+  }
+}
+    `;
+export type CreateSubscriberWithGithubMutationFn = Apollo.MutationFunction<CreateSubscriberWithGithubMutation, CreateSubscriberWithGithubMutationVariables>;
+
+/**
+ * __useCreateSubscriberWithGithubMutation__
+ *
+ * To run a mutation, you first call `useCreateSubscriberWithGithubMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSubscriberWithGithubMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSubscriberWithGithubMutation, { data, loading, error }] = useCreateSubscriberWithGithubMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      email: // value for 'email'
+ *      token: // value for 'token'
+ *   },
+ * });
+ */
+export function useCreateSubscriberWithGithubMutation(baseOptions?: Apollo.MutationHookOptions<CreateSubscriberWithGithubMutation, CreateSubscriberWithGithubMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSubscriberWithGithubMutation, CreateSubscriberWithGithubMutationVariables>(CreateSubscriberWithGithubDocument, options);
+      }
+export type CreateSubscriberWithGithubMutationHookResult = ReturnType<typeof useCreateSubscriberWithGithubMutation>;
+export type CreateSubscriberWithGithubMutationResult = Apollo.MutationResult<CreateSubscriberWithGithubMutation>;
+export type CreateSubscriberWithGithubMutationOptions = Apollo.BaseMutationOptions<CreateSubscriberWithGithubMutation, CreateSubscriberWithGithubMutationVariables>;
 export const CreateSubscriberDocument = gql`
     mutation CreateSubscriber($name: String!, $email: String!) {
   createSubscriber(data: {name: $name, email: $email}) {
