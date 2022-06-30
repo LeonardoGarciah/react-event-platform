@@ -59,6 +59,8 @@ export default function Subscribe(){
       console.log(JSON.stringify(error, null, 2))
     })
 
+     }).catch((error)=>{
+      console.log(error);
      })
     }
 
